@@ -35,3 +35,14 @@ To develop all apps and packages, run the following command:
 ```
 pnpm run dev
 ```
+
+## ENV
+
+Needs the following environment variables and secrets set up.
+
+```
+API_URL=http://127.0.0.1:8090
+GITHUB_REDIRECT_URL=http://localhost:5173/auth/redirect
+STRIPE_KEY=
+STRIPE_WEBHOOK_SECRET=
+```
