@@ -20,13 +20,7 @@ A starter template to quickly get up and running.
 - `web`: a [SvelteKit](https://kit.svelte.dev) app
 - `backend`: a [PocketBase](https://pocketbase.io) repo. Just contains a built Go binary and some data to get started.
 
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-pnpm run build
-```
+## Getting started
 
 ### Develop
 
@@ -38,6 +32,14 @@ When everything is set up run the following command from the root folder:
 
 ```
 pnpm run dev
+```
+
+### Build
+
+To build all apps and packages, run the following command:
+
+```
+pnpm run build
 ```
 
 ## ENV
