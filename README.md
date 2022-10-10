@@ -30,7 +30,11 @@ pnpm run build
 
 ### Develop
 
-To develop all apps and packages, run the following command:
+After running the dev command, create an account in the PocketBase app running at `localhost:8090/`. Go to the import collections tab and use the `pb_schema.json` file found in the `backend` folder.
+
+Make sure all the environment variables are set up correctly. The template uses GitHub OAuth to log in, so in order to set it up you need to create an application there and those settings to PocketBase. Before that you won't be able to log in.
+
+When everything is set up run the following command from the root folder:
 
 ```
 pnpm run dev
