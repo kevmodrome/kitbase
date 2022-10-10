@@ -1,0 +1,46 @@
+/* Write your global styles here, in PostCSS syntax */
+@import 'open-props/postcss/style';
+
+/* optional imports that use the props */
+@import 'open-props/postcss/normalize';
+
+@font-face {
+	font-family: 'Manrope';
+	src: url('/fonts/Manrope.woff2') format('woff2');
+}
+
+/* Custom Props */
+html {
+	--font-size-display: calc(2 * var(--font-size-fluid-3));
+}
+
+body {
+	font-family: 'Manrope';
+	background: var(--gray-9);
+	color: var(--gray-2);
+}
+
+h1 {
+	color: var(--violet-6);
+	font-variation-settings: 'wght' var(--font-weight-8);
+	font-size: var(--font-size-fluid-3);
+	line-height: var(--font-lineheight-0);
+	margin: var(--size-4) 0;
+	letter-spacing: var(--font-letterspacing-2);
+}
+
+h2 {
+	color: var(--gray-2);
+	font-variation-settings: 'wght' var(--font-weight-7);
+	font-size: var(--font-size-fluid-1);
+	line-height: var(--font-lineheight-0);
+	margin: var(--size-2) 0;
+	letter-spacing: var(--font-letterspacing-2);
+}
+
+nav > ul {
+	margin-bottom: 0.5em;
+	display: flex;
+	list-style: none;
+	gap: 0.5em;
+}

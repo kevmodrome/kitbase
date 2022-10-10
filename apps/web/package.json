@@ -1,27 +1,44 @@
 {
-  "name": "web",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "12.3.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "ui": "workspace:*"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "eslint-config-custom": "workspace:*",
-    "eslint": "7.32.0",
-    "next-transpile-modules": "9.0.0",
-    "tsconfig": "workspace:*",
-    "@types/node": "^17.0.12",
-    "@types/react": "18.0.17",
-    "typescript": "^4.5.3"
-  }
+	"name": "web",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"test": "playwright test",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.26.1",
+		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/kit": "next",
+		"@typescript-eslint/eslint-plugin": "^5.38.1",
+		"@typescript-eslint/parser": "^5.38.1",
+		"@vitejs/plugin-basic-ssl": "^0.1.2",
+		"autoprefixer": "^10.4.12",
+		"eslint": "^8.24.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"miniflare": "^2.9.0",
+		"open-props": "^1.4.16",
+		"pocketbase": "^0.7.1",
+		"postcss": "^8.4.17",
+		"postcss-custom-media": "^8.0.2",
+		"postcss-load-config": "^4.0.1",
+		"postcss-nesting": "^10.2.0",
+		"prettier": "^2.7.1",
+		"prettier-plugin-svelte": "^2.7.1",
+		"stripe": "^10.12.0",
+		"svelte": "^3.50.1",
+		"svelte-check": "^2.9.1",
+		"svelte-preprocess": "^4.10.7",
+		"tslib": "^2.4.0",
+		"typescript": "^4.8.4",
+		"vite": "^3.1.4"
+	},
+	"type": "module"
 }
