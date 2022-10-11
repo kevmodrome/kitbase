@@ -25,10 +25,6 @@
 	</section>
 </div>
 
-<!-- <form method="POST" action="/billing/checkout">
-	<input hidden name="id" type="text" value="price_1LJ983IIyo8wu6Mj6eFA76j3" />
-	<button>Test Checkout Stripe</button>
-</form> -->
 <style lang="postcss">
 	ul {
 		padding: 0;
@@ -64,11 +60,6 @@
 		background: var(--gray-8);
 		border-radius: var(--radius-2);
 		padding: var(--size-2) var(--size-3);
-	}
-
-	form {
-		display: grid;
-		gap: var(--size-3);
 	}
 
 	.right {

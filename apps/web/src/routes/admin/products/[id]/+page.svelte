@@ -7,6 +7,7 @@
 	import type { PageData } from './$types';
 	export let data: PageData;
 	const product = data.product;
+	const categories = data.categories;
 
 	let loading = false;
 
@@ -35,8 +36,14 @@
 			<h2>Update</h2>
 			<form use:enhance={formResult} action="?/update" method="POST">
 				<input hidden name="id" value={product.id} />
-				<Input id="name" label="name" type="text" value={product.name} disabled={loading} />
-				<Input id="price" label="price" type="number" value={product.price} disabled={loading} />
+				<Input id="name" label="Name" type="text" value={product.name} disabled={loading} />
+				<Input id="price" label="Price" type="number" value={product.price} disabled={loading} />
+				<select name="category">
+					<option value="" disabled>Select Category</option>
+					{#each categories as { name, id }}
+						<option value={id} selected={product.categories.includes(id)}>{name}</option>
+					{/each}
+				</select>
 				<div class="right"><Button type="success" disabled={loading}>Update Product</Button></div>
 			</form>
 		</section>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Input from '$lib/components/form/Input.svelte';
 	import Button from '$lib/components/Button.svelte';
+	import Avatar from '$lib/components/Avatar.svelte';
 	import { notifications } from '$lib/stores/notifications';
 	import type { SubmitFunction } from '$app/forms';
 	import { enhance, applyAction } from '$app/forms';
@@ -31,14 +32,17 @@
 	<h1>Manage your account</h1>
 	<div class="sections">
 		<section class="card">
-			<h2>Your Profile</h2>
+			<div class="heading">
+				<h2>Your Profile</h2>
+				<Avatar url={data.user?.profile.avatar} name={data.user?.profile.name} />
+			</div>
 			<form use:enhance={formResult} action="?/update" method="POST">
-				<Input id="email" label="E-mail" type="email" value={data.user.email} disabled />
+				<Input id="email" label="E-mail" type="email" value={data?.user?.email} disabled />
 				<Input
 					id="name"
 					label="Name"
 					type="text"
-					value={data.user.profile.name}
+					value={data?.user?.profile?.name}
 					placeholder="Please enter a name"
 					disabled={loading}
 				/>
@@ -73,6 +77,11 @@
 		background: var(--gray-8);
 		border-radius: var(--radius-2);
 		padding: var(--size-2) var(--size-3);
+	}
+
+	.heading {
+		display: flex;
+		place-content: space-between;
 	}
 
 	form {
