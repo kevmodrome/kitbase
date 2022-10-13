@@ -19,7 +19,7 @@ export async function getProduct(pb: PocketBase, id: string): Promise<Product> {
     return structuredClone(product)
 }
 
-export async function getCachedProduct(cache: KVNamespace, id: string): Promise<Product[]> {
+export async function getCachedProduct(cache: KVNamespace, id: string): Promise<Product> {
     const product = await cache.get(id)
 
     if (!product) {
