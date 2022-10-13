@@ -24,10 +24,16 @@
 						</ul>
 						${product.price}</span
 					>
-					<div class="actions">
-						<Button href="/products/{product.id}/edit" type="info">Edit</Button>
-						<Button href="/products/{product.id}/delete" type="info">Delete</Button>
-					</div>
+					{#if data?.user?.profile?.role === 'admin'}
+						<div class="actions">
+							<Button label="Edit product" href="/products/{product.id}/edit" type="primary"
+								>Edit</Button
+							>
+							<Button label="Delete product" href="/products/{product.id}/delete" type="danger"
+								>Delete</Button
+							>
+						</div>
+					{/if}
 				</li>
 			{/each}
 		</ul>
