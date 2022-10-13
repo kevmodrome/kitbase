@@ -7,7 +7,7 @@
 		danger: 'var(--red-9)',
 		success: 'var(--green-7)',
 		warning: 'var(--yellow-6)',
-		info: '#5bc0de',
+		info: 'var(--blue-3)',
 		default: '#aaaaaa'
 	};
 </script>
