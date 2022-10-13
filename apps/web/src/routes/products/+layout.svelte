@@ -2,7 +2,6 @@
 	import type { PageData } from './$types';
 	import Banner from '$lib/components/Banner.svelte';
 	import Button from '$lib/components/Button.svelte';
-	import { enhance } from '$app/forms';
 	export let data: PageData;
 </script>
 
@@ -27,10 +26,7 @@
 					>
 					<div class="actions">
 						<Button href="/products/{product.id}/edit" type="info">Edit</Button>
-						<form use:enhance action="?/delete" method="POST">
-							<input name="id" value={product.id} hidden />
-							<Button type="danger">Delete</Button>
-						</form>
+						<Button href="/products/{product.id}/delete" type="info">Delete</Button>
 					</div>
 				</li>
 			{/each}

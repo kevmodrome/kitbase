@@ -6,24 +6,31 @@
 	import Button from '$lib/components/Button.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import { notifications } from '$lib/stores/notifications';
-	import { goto, invalidateAll } from '$app/navigation';
+	import { afterNavigate, goto, invalidateAll } from '$app/navigation';
 
 	export let loading = false;
 	export let data: PageData;
 	const product = data.product;
 	const categories = data.categories;
+	const isEditing = data.isEditing;
 
-	const updateProduct: SubmitFunction = () => {
+	afterNavigate(() => {
+		invalidateAll();
+	});
+
+	const ariaLabel = isEditing ? 'Update Product Modal' : 'Confirm Delete Product Modal';
+	const heading = isEditing ? 'Update' : 'Are you sure you want to delete this product?';
+
+	const submit: SubmitFunction = () => {
 		loading = true;
 		return async ({ result }) => {
 			switch (result.type) {
 				case 'success':
-					notifications.success('Updated product');
-					await invalidateAll();
+					notifications.success(isEditing ? 'Product updated!' : 'Product Deleted');
 					goto('/products');
 					break;
 				case 'error':
-					notifications.danger('Something went wrong when trying to update the product');
+					notifications.danger('Something went wrong. Please try again.');
 					break;
 				default:
 					await applyAction(result);
@@ -33,19 +40,27 @@
 	};
 </script>
 
-<Modal label="Update Product Modal">
-	<h3 slot="heading">Update</h3>
-	<form use:enhance={updateProduct} action="/products?/update" method="POST">
+<Modal label={ariaLabel}>
+	<h3 slot="heading">{heading}</h3>
+	<form use:enhance={submit} action="/products?/{isEditing ? 'update' : 'delete'}" method="POST">
 		<input hidden name="id" value={product.id} />
-		<Input id="name" label="Name" type="text" value={product.name} disabled={loading} />
-		<Input id="price" label="Price" type="number" value={product.price} disabled={loading} />
-		<select name="category">
-			<option value="" disabled>Select Category</option>
-			{#each categories as { name, id }}
-				<option value={id} selected={product.categories.includes(id)}>{name}</option>
-			{/each}
-		</select>
-		<div class="right"><Button type="success" disabled={loading}>Update Product</Button></div>
+		{#if isEditing}
+			<Input id="name" label="Name" type="text" value={product.name} disabled={loading} />
+			<Input id="price" label="Price" type="number" value={product.price} disabled={loading} />
+			<select name="category">
+				<option value="" disabled>Select Category</option>
+				{#each categories as { name, id }}
+					<option value={id} selected={product?.categories?.includes(id)}>{name}</option>
+				{/each}
+			</select>
+		{/if}
+		<div class="right">
+			<Button
+				label={isEditing ? 'Update product button' : 'Confirm product deletion button'}
+				type={isEditing ? 'success' : 'danger'}
+				disabled={loading}>{isEditing ? 'Update Product' : 'Delete Product'}</Button
+			>
+		</div>
 	</form>
 </Modal>
 

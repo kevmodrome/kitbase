@@ -6,7 +6,7 @@ import { getCategories } from '$lib/helpers/categories';
 
 export const load: PageServerLoad = async ({ params, locals, platform, parent }) => {
     await parent()
-    const [id, ] = params.id.split('/')
+    const [id, modal] = params.id.split('/')
     const [product, categories] = await Promise.all([
         Promise.any([
             getProduct(locals.pb, id), 
@@ -16,6 +16,7 @@ export const load: PageServerLoad = async ({ params, locals, platform, parent })
     ])
 
     return {    
+        isEditing: modal === 'edit' ? true : false,
         product,
         categories
     };
