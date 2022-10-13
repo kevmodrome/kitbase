@@ -35,8 +35,6 @@ export const actions: Actions = {
 
         const result = await locals.pb.records.update('products', id, updateProduct)
 
-        console.log(result)
-
         // Update KV cache
         const product = await getProduct(locals.pb, id)
         await platform.env?.CACHE_SPACE.put(id, JSON.stringify(product))
