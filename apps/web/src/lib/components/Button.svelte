@@ -2,10 +2,15 @@
 	export let type: 'success' | 'danger' | 'warning' | 'primary' | 'secondary' = 'primary';
 	export let disabled: boolean = false;
 	export let href: string = '';
+	export let label: string;
 </script>
 
-<svelte:element this={href ? 'a' : 'button'} {disabled} {href} class="button {type}"
-	><slot /></svelte:element
+<svelte:element
+	this={href ? 'a' : 'button'}
+	aria-label={label}
+	{disabled}
+	{href}
+	class="button {type}"><slot /></svelte:element
 >
 
 <style lang="postcss">
