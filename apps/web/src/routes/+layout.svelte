@@ -26,5 +26,7 @@
 <style>
 	main {
 		padding: 0 var(--size-3);
+		display: grid;
+		gap: var(--size-2);
 	}
 </style>
