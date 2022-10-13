@@ -12,7 +12,9 @@
 	export let data: PageData;
 	const product = data.product;
 	const categories = data.categories;
-	const isEditing = data.isEditing;
+	const [modals] = data.modals;
+
+	const isEditing = modals === 'edit' ? true : false;
 
 	afterNavigate(() => {
 		invalidateAll();
