@@ -13,9 +13,10 @@ export enum Variant {
 export interface Product extends Record {
     name: string,
     price: number,
-    categories?: Category[]
+    categories?: Category["id"][]
 }
 
 export interface Category extends Record {
-    name: string
+    name: string,
+	id: string
 }
