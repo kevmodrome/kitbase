@@ -14,6 +14,7 @@ A starter template to quickly get up and running.
 - Cloudflare Dev Environment that supports their distributed KV store.
 - Styling using [Open Props](https://open-props.style).
 - Testing using PlayWright (WIP)
+- Plugins using unplugin-icons
 
 ### Apps and Packages
 
