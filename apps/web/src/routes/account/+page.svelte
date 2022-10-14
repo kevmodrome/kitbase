@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Input from '$lib/components/form/Input.svelte';
 	import Button from '$lib/components/Button.svelte';
-	import Avatar from '$lib/components/Avatar.svelte';
+	import Avatar from '$lib/components/Avatar';
 	import { notifications } from '$lib/stores/notifications';
 	import type { SubmitFunction } from '$app/forms';
 	import { enhance, applyAction } from '$app/forms';
