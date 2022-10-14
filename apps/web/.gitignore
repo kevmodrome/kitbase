@@ -3,6 +3,7 @@ node_modules
 /build
 /.svelte-kit
 /.kv-data
+/.cache-data
 /package
 .env
 .env.*
