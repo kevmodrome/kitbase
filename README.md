@@ -1,6 +1,6 @@
 # WIP: KitBase Starter Template
 
-This is a starter template for SvelteKit and PocketBase. Set up to use Cloudflare KV for caching (has to be manually handled). Local development done in
+This is a starter template for SvelteKit and PocketBase. Set up to use Cloudflare's cache API for backend responses. Local development uses Miniflare to mock the cache API.
 
 ## What's inside?
 
@@ -11,7 +11,7 @@ A starter template to quickly get up and running.
 - Auth
 - Stripe
 - Admin CMS courtesy of PocketBase
-- Cloudflare Dev Environment that supports their distributed KV store.
+- Cloudflare Dev Environment using Miniflare. Supports Cache API.
 - Styling using [Open Props](https://open-props.style).
 - Histoire support
 - Testing using PlayWright (WIP)
