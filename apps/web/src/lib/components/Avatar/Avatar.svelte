@@ -9,18 +9,17 @@
 
 <style lang="postcss">
 	img {
-		vertical-align: middle;
-		border-radius: 50%;
-		width: 50px;
-		height: 50px;
+		--_avatar-size: var(--avatar-size, 50px);
+		border-radius: var(--radius-round);
+		aspect-ratio: var(--ratio-square);
+		width: var(--_avatar-size);
+		height: var(--_avatar-size);
 	}
 	.large {
-		width: 70px;
-		height: 70px;
+		--avatar-size: 70px;
 	}
 
 	.small {
-		width: 30px;
-		height: 30px;
+		--avatar-size: 30px;
 	}
 </style>

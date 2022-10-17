@@ -1,1 +1,1 @@
-export default './Avatar.svelte'
+export * as Avatar from './Avatar.svelte'
