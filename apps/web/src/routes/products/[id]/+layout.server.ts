@@ -6,10 +6,7 @@ import { getCategories } from '$lib/helpers/categories';
 export const load: LayoutServerLoad = async ({ params, locals, platform, parent }) => {
     await parent()
     const [product, categories] = await Promise.all([
-        Promise.any([
-            getProduct(locals.pb, params.id), 
-            getCachedProduct(platform.cache, params.id)
-        ]),
+        await getProduct(platform, locals.pb, params.id),
         await getCategories(locals.pb) 
     ])
 

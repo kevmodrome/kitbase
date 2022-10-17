@@ -13,7 +13,11 @@ export async function getProducts(pb: PocketBase): Promise<Product[]> {
     return structuredClone(mergedCategories)
 }
 
-export async function getProduct(pb: PocketBase, id: string): Promise<Product> {
+export async function getProduct(platform, pb: PocketBase, id: string): Promise<Product> {
+    const cachedResponse = await platform.cache.match(`products:${id}`)
+    if (cachedResponse) {
+        return await cachedResponse.json()
+    }
     const product = await pb.records.getOne('products', id, { expand: 'categories' }) as Product
 
     return structuredClone(product)

@@ -14,9 +14,6 @@ declare global {
 		// interface PageData {}
 		interface Error {}
 		interface Platform {
-			env?: {
-				CACHE_SPACE: KVNamespace
-			}
 			cache: CacheInterface
 		}
 	}
