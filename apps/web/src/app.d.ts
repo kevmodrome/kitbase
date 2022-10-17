@@ -1,5 +1,6 @@
 import type { KVNamespace } from 'miniflare'
 import type PocketBase, { User } from 'pocketbase'
+import type { CacheInterface } from '@miniflare/cache'
 
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
@@ -16,6 +17,7 @@ declare global {
 			env?: {
 				CACHE_SPACE: KVNamespace
 			}
+			cache: CacheInterface
 		}
 	}
 }
