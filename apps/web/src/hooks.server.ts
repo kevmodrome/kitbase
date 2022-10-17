@@ -6,8 +6,8 @@ import { dev } from '$app/environment';
 
 export const handle: Handle = async ({ event, resolve }) => {
     if (dev) {
-		  event.platform = await fallBackPlatformToMiniFlareInDev(event.platform);
-	  }
+		event.platform = await fallBackPlatformToMiniFlareInDev(event.platform);  
+    }
 
     event.locals.pb = new PocketBase(API_URL);
     event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '')

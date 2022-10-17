@@ -1,4 +1,5 @@
 import { Miniflare, Log, LogLevel } from 'miniflare';
+import { Cache } from "@miniflare/cache";
 import { dev } from '$app/environment';
 
 export const fallBackPlatformToMiniFlareInDev = async (_platform: App.Platform) => {
@@ -7,8 +8,7 @@ export const fallBackPlatformToMiniFlareInDev = async (_platform: App.Platform) 
 	if (_platform) return _platform;
 	const mf = new Miniflare({
 		log: new Log(LogLevel.INFO),
-		kvPersist: './.kv-data', // Use filebase or in memory store
-		kvNamespaces: ['CACHE_SPACE'], //Declare array with NameSpaces
+		cachePersist: "./.data", // Custom path
 		globalAsyncIO: true,
 		globalTimers: true,
 		globalRandom: true,
@@ -26,9 +26,9 @@ export const fallBackPlatformToMiniFlareInDev = async (_platform: App.Platform) 
 
 	// await mf.dispatchFetch('https://host.tld');
 
-	const env = await mf.getBindings();
+	const caches = await mf.getCaches();
 
-	const platform: App.Platform = { env };
+	const platform: App.Platform = { cache: caches.default };
 
 	return platform;
 };

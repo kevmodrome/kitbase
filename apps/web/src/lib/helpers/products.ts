@@ -1,6 +1,6 @@
 import type PocketBase from 'pocketbase'
 import type { Product } from '$lib/types'
-import type { KVNamespace } from 'miniflare'
+import type { CacheInterface } from '@miniflare/cache'
 
 export async function getProducts(pb: PocketBase): Promise<Product[]> {
     const { items } = await pb.records.getList('products', 1, 30, { expand: 'categories' })
@@ -19,12 +19,16 @@ export async function getProduct(pb: PocketBase, id: string): Promise<Product> {
     return structuredClone(product)
 }
 
-export async function getCachedProduct(cache: KVNamespace, id: string): Promise<Product> {
-    const product = await cache.get(id)
+export async function getCachedProduct(caches: CacheInterface, id: string): Promise<Product> {
+    console.log(id)
+    const cachedResponse = await caches.match(`products:${id}`)
+    console.log('cachedResponse')
 
-    if (!product) {
+    console.log(await cachedResponse?.json())
+
+    if (!cachedResponse) {
         throw Error('No items found')
     }
 
-    return JSON.parse(product)
+    return await cachedResponse.json()
 }

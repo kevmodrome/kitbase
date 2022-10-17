@@ -14,7 +14,10 @@ export const actions: Actions = {
 
         const result = await locals.pb.records.create('products', newProduct)
         const product = await getProduct(locals.pb, result.id)
-        await platform.env?.CACHE_SPACE.put(product.id, JSON.stringify(product))
+        const cacheRes = new Response(JSON.stringify(product), {
+            headers: { "Cache-Control": "max-age=3600" }
+        })
+        await platform.cache.put(`products:${product.id}`, cacheRes)
 
         return { success: true, result: structuredClone(result)  };
     },
@@ -32,7 +35,7 @@ export const actions: Actions = {
 
         console.log(result)
 
-        // Update KV cache
+        // Update CF cache
         const product = await getProduct(locals.pb, id)
         await platform.env?.CACHE_SPACE.put(id, JSON.stringify(product))
 
@@ -42,7 +45,7 @@ export const actions: Actions = {
         const data = await request.formData()
         const id = data.get('id') as string
         
-        await Promise.all([await locals.pb.records.delete('products', id), await platform.env?.CACHE_SPACE.delete(id)])
+        await Promise.all([await locals.pb.records.delete('products', id), await platform.caches.delete(`products:${id}`)])
 
         return { success: true }
     },

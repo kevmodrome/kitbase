@@ -8,7 +8,7 @@ export const load: LayoutServerLoad = async ({ params, locals, platform, parent 
     const [product, categories] = await Promise.all([
         Promise.any([
             getProduct(locals.pb, params.id), 
-            getCachedProduct(platform.env?.CACHE_SPACE, params.id)
+            getCachedProduct(platform.cache, params.id)
         ]),
         await getCategories(locals.pb) 
     ])
