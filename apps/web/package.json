@@ -15,6 +15,8 @@
 		"generate:types": "pocketbase-typegen --db ../backend/pb_data/data.db --out ./src/pocketbase.d.ts"
 	},
 	"devDependencies": {
+		"@anatine/zod-mock": "^3.6.0",
+		"@faker-js/faker": "^7.6.0",
 		"@histoire/plugin-svelte": "^0.11.4",
 		"@iconify/json": "^2.1.122",
 		"@miniflare/cache": "^2.10.0",
@@ -47,7 +49,9 @@
 		"tslib": "^2.4.0",
 		"typescript": "^4.8.4",
 		"unplugin-icons": "^0.14.11",
-		"vite": "^3.1.8"
+		"vite": "^3.1.8",
+		"zod": "^3.19.1",
+		"zod-to-json-schema": "^3.18.1"
 	},
 	"type": "module"
 }
