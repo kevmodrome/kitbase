@@ -1,31 +1,15 @@
 <script lang="ts">
 	import Input from '$lib/components/form/Input.svelte';
 	import Button from '$lib/components/Button.svelte';
-	import Avatar from '$lib/components/Avatar';
+	import { Avatar } from '$lib/components/Avatar';
 	import { notifications } from '$lib/stores/notifications';
-	import type { SubmitFunction } from '$app/forms';
-	import { enhance, applyAction } from '$app/forms';
+	import { enhance } from '$app/forms';
 	import type { PageData, ActionData } from './$types';
+	import { update } from './submit';
 	export let data: PageData;
 	export let form: ActionData;
+	$: form?.success && notifications.success('Profile updated');
 	let loading = false;
-
-	const formResult: SubmitFunction = () => {
-		loading = true;
-		return async function ({ result }) {
-			switch (result.type) {
-				case 'success':
-					notifications.success('Profile updated');
-					break;
-				case 'error':
-					notifications.danger('Something went wrong when trying to update your profile');
-					break;
-				default:
-					await applyAction(result);
-			}
-			loading = false;
-		};
-	};
 </script>
 
 <main>
@@ -36,7 +20,13 @@
 				<h2>Your Profile</h2>
 				<Avatar url={data.user?.profile.avatar} name={data.user?.profile.name} />
 			</div>
-			<form use:enhance={formResult} action="?/update" method="POST">
+			<form
+				use:enhance={update}
+				on:loading={() => (loading = true)}
+				on:finish={() => (loading = false)}
+				action="?/update"
+				method="POST"
+			>
 				<Input id="email" label="E-mail" type="email" value={data?.user?.email} disabled />
 				<Input
 					id="name"
