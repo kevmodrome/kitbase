@@ -12,7 +12,7 @@
 		<li><a data-sveltekit-prefetch href="/login">Login</a></li>
 		<li><a data-sveltekit-prefetch href="/account">Account</a></li>
 		<li><a data-sveltekit-prefetch href="/products">Products</a></li>
-		{#if data?.user?.profile?.role === 'admin'}
+		{#if data?.user?.profile?.role && data?.user?.profile?.role !== 'user'}
 			<li><a data-sveltekit-prefetch href="/admin">Admin</a></li>
 		{/if}
 		<li><a href="/auth/signout">Sign out</a></li>
