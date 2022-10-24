@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ActionData, PageData } from './$types';
+	import type { PageData } from './$types';
 	import Banner from '$lib/components/Banner.svelte';
 	import Button from '$lib/components/Button.svelte';
 	export let data: PageData;
