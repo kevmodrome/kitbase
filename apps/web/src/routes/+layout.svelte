@@ -10,27 +10,37 @@
 <nav aria-label="primary-navigation">
 	<ul>
 		<li>
-			<a data-sveltekit-prefetch href="/" class:active={$currentPage === '/'}>SVELTE SUMMIT</a>
-		</li>
-		<li>
-			<a data-sveltekit-prefetch href="/login" class:active={$currentPage.includes('/login')}
-				>Login</a
+			<a data-sveltekit-prefetch href="/" aria-current={$currentPage === '/' && 'page'}
+				>SVELTE SUMMIT</a
 			>
 		</li>
 		<li>
-			<a data-sveltekit-prefetch href="/account" class:active={$currentPage.includes('/account')}
-				>Account</a
+			<a
+				data-sveltekit-prefetch
+				href="/login"
+				aria-current={$currentPage.includes('/login') && 'page'}>Login</a
 			>
 		</li>
 		<li>
-			<a data-sveltekit-prefetch href="/products" class:active={$currentPage.includes('/products')}
-				>Products</a
+			<a
+				data-sveltekit-prefetch
+				href="/account"
+				aria-current={$currentPage.includes('/account') && 'page'}>Account</a
+			>
+		</li>
+		<li>
+			<a
+				data-sveltekit-prefetch
+				href="/products"
+				aria-current={$currentPage.includes('/products') && 'page'}>Products</a
 			>
 		</li>
 		{#if data?.user?.profile?.role && data?.user?.profile?.role !== 'user'}
 			<li>
-				<a data-sveltekit-prefetch href="/admin" class:active={$currentPage.includes('/admin')}
-					>Admin</a
+				<a
+					data-sveltekit-prefetch
+					href="/admin"
+					aria-current={$currentPage.includes('/admin') && 'page'}>Admin</a
 				>
 			</li>
 		{/if}
@@ -49,7 +59,7 @@
 		gap: var(--size-2);
 	}
 
-	.active {
+	[aria-current='page'] {
 		color: green;
 	}
 </style>
