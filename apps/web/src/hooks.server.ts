@@ -15,7 +15,7 @@ export const handle: Handle = async ({ event, resolve }) => {
     try {
       // get an up-to-date auth store state by veryfing and refreshing the loaded auth model (if any)
       if (event.locals.pb.authStore.isValid) {
-        await event.locals.pb.collection('users').authRefresh();
+        await event.locals.pb.users.refresh();
       }
     } catch (_) {
       // clear the auth store on failed refresh
